@@ -33,14 +33,14 @@ const Sidebar = ({ isCollapsed, toggleCollapse }) => {
     <motion.aside
       initial={false}
       animate={{ width: isCollapsed ? UI_CONFIG.sidebar.collapsedWidth : UI_CONFIG.sidebar.width }}
-      transition={{ duration: 0.2, ease: 'easeInOut' }}
-      className="fixed top-0 left-0 h-screen bg-white dark:bg-slate-950 border-r border-slate-100 dark:border-slate-800 z-50 flex flex-col"
+      transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+      className="fixed top-0 left-0 h-screen bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-r border-slate-100/50 dark:border-slate-800/50 z-50 flex flex-col shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
     >
       {/* ── Header ── */}
-      <div className="h-10 flex items-center px-3 border-b border-slate-100 dark:border-slate-800 relative flex-shrink-0">
+      <div className="h-10 flex items-center px-3 border-b border-slate-100/50 dark:border-slate-800/50 relative flex-shrink-0">
         <div className="flex items-center gap-2 min-w-0">
-          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-indigo-600/20">
-            <Zap size={13} fill="currentColor" />
+          <div className="w-6 h-6 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-lg flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-indigo-500/30">
+            <Zap size={12} fill="currentColor" />
           </div>
           <AnimatePresence>
             {!isCollapsed && (
@@ -67,17 +67,17 @@ const Sidebar = ({ isCollapsed, toggleCollapse }) => {
       </div>
 
       {/* ── Navigation ── */}
-      <nav className="flex-1 px-1.5 py-2 space-y-0.5 overflow-y-auto overflow-x-hidden">
+      <nav className="flex-1 px-1.5 py-4 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
         {menuItems.map((item) => (
           <Tooltip key={item.path} content={item.name} position="right" disabled={!isCollapsed}>
             <NavLink
               to={item.path}
               className={({ isActive }) => clsx(
-                "w-full flex items-center gap-2.5 px-2.5 rounded-md transition-all duration-150 relative group",
+                "w-full flex items-center gap-2.5 px-2.5 rounded-lg transition-all duration-300 relative group overflow-hidden",
                 isCollapsed ? "justify-center px-0" : "",
                 isActive
-                  ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
-                  : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-700 dark:hover:text-slate-200"
+                  ? "bg-gradient-to-r from-indigo-500/10 to-transparent text-indigo-600 dark:text-indigo-400 active-glow"
+                  : "text-slate-500 dark:text-slate-400 hover:bg-slate-50/80 dark:hover:bg-slate-800/40 hover:text-slate-700 dark:hover:text-slate-200"
               )}
               style={{ height: UI_CONFIG.sidebar.itemHeight }}
             >
@@ -85,13 +85,13 @@ const Sidebar = ({ isCollapsed, toggleCollapse }) => {
                 <>
                   {/* Left active indicator */}
                   <div className={clsx(
-                    "absolute left-0 top-1 bottom-1 w-[3px] rounded-r-full transition-all duration-200",
-                    isActive ? "bg-indigo-600 dark:bg-indigo-400" : "bg-transparent"
+                    "absolute left-0 top-1.5 bottom-1.5 w-[2.5px] rounded-r-full transition-all duration-300 shadow-[0_0_8px_rgba(79,70,229,0.4)]",
+                    isActive ? "bg-indigo-600 dark:bg-indigo-400" : "bg-transparent -translate-x-full"
                   )} />
 
-                  <item.icon size={15} className={clsx(
-                    "flex-shrink-0 transition-colors duration-150",
-                    isActive ? "text-indigo-600 dark:text-indigo-400" : ""
+                  <item.icon size={14} className={clsx(
+                    "flex-shrink-0 transition-all duration-300 group-hover:scale-110",
+                    isActive ? "text-indigo-600 dark:text-indigo-400 drop-shadow-[0_0_3px_rgba(99,102,241,0.3)]" : ""
                   )} />
 
                   <AnimatePresence>

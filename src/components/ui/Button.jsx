@@ -8,10 +8,10 @@ const Button = ({
   icon: Icon, className = '', disabled, ...props 
 }) => {
   const variants = {
-    primary:   'bg-indigo-600 text-white hover:bg-indigo-700 active:bg-indigo-800 shadow-sm',
-    secondary: 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800',
-    danger:    'bg-rose-600 text-white hover:bg-rose-700 active:bg-rose-800 shadow-sm',
-    ghost:     'bg-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800',
+    primary:   'bg-gradient-to-br from-indigo-600 to-violet-600 text-white hover:shadow-lg hover:shadow-indigo-500/30 active:scale-[0.98] border border-indigo-500/20',
+    secondary: 'glass-effect !bg-white/50 dark:!bg-slate-900/50 text-slate-600 dark:text-slate-300 border-slate-200/60 dark:border-slate-700/50 hover:!bg-white dark:hover:!bg-slate-800 shadow-sm',
+    danger:    'bg-gradient-to-br from-rose-600 to-pink-600 text-white hover:shadow-lg hover:shadow-rose-500/30 active:scale-[0.98] border border-rose-500/20',
+    ghost:     'bg-transparent text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-100',
   };
 
   const sizes = {

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Sidebar from '../components/layout/Sidebar';
 import Navbar from '../components/layout/Navbar';
 
 const MainLayout = () => {
+  const { t } = useTranslation('common');
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const location = useLocation();
@@ -48,10 +50,10 @@ const MainLayout = () => {
         <main className="flex-1 px-2 md:px-3 pb-2 flex flex-col overflow-hidden">
           {/* Breadcrumb */}
           <div className="flex items-center gap-1.5 py-1.5 text-[8px] font-bold uppercase tracking-wider text-slate-400 flex-shrink-0">
-            <span className="hover:text-indigo-600 cursor-pointer transition-colors">Console</span>
+            <span className="hover:text-indigo-600 cursor-pointer transition-colors">{t('console', { defaultValue: 'Console' })}</span>
             <span className="opacity-30">/</span>
             <span className="text-slate-600 dark:text-slate-300">
-              {location.pathname.substring(1) || 'Dashboard'}
+              {t(location.pathname.substring(1) || 'dashboard', { defaultValue: location.pathname.substring(1) || 'Dashboard' })}
             </span>
           </div>
 

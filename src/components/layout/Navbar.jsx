@@ -34,7 +34,7 @@ const Navbar = ({ onMenuClick }) => {
   };
 
   return (
-    <header className="sticky top-1.5 z-40 w-[calc(100%-1rem)] mx-auto h-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-100 dark:border-slate-800 rounded-lg shadow-sm flex-shrink-0">
+    <header className="sticky top-2 z-40 w-[calc(100%-1rem)] mx-auto h-10 glass-effect !bg-white/70 dark:!bg-slate-900/70 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex-shrink-0">
       <div className="h-full px-3 flex items-center justify-between gap-3">
         {/* Left: Menu + Search */}
         <div className="flex items-center gap-2 flex-1 min-w-0">
@@ -46,11 +46,11 @@ const Navbar = ({ onMenuClick }) => {
           </button>
           
           <div className="relative hidden sm:flex items-center flex-1 max-w-[220px] group">
-            <Search className="absolute left-2 text-slate-400 group-focus-within:text-indigo-500 transition-colors pointer-events-none" size={11} />
+            <Search className="absolute left-2.5 text-slate-400 group-focus-within:text-indigo-500 transition-all pointer-events-none" size={11} />
             <input 
               type="text" 
               placeholder={t('search_placeholder')} 
-              className="w-full bg-slate-50 dark:bg-slate-800/60 border border-transparent focus:border-indigo-500/30 rounded-md pl-7 pr-3 py-1 text-[9px] font-bold focus:ring-1 focus:ring-indigo-500/10 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+              className="w-full bg-slate-50/50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-700/50 focus:border-indigo-500/30 rounded-lg pl-8 pr-3 py-1 text-[9px] font-bold focus:ring-4 focus:ring-indigo-500/5 transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-inner"
             />
           </div>
         </div>
@@ -81,17 +81,17 @@ const Navbar = ({ onMenuClick }) => {
           <div className="relative" ref={dropdownRef}>
             <button 
               onClick={() => setShowDropdown(!showDropdown)}
-              className="flex items-center gap-1.5 py-1 pl-1.5 pr-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="flex items-center gap-1.5 py-1 pl-1.5 pr-2 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all group border border-transparent hover:border-slate-100 dark:hover:border-slate-700"
             >
               <div className="text-right hidden sm:block">
-                <p className="text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-tight leading-none">
+                <p className="text-[9px] font-black text-slate-900 dark:text-white uppercase tracking-tight leading-none group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   {authUser.firstName} {authUser.lastName || ''}
                 </p>
-                <p className="text-[7px] font-bold text-indigo-500 uppercase tracking-wider mt-0.5">
+                <p className="text-[7px] font-bold text-indigo-500 uppercase tracking-wider mt-0.5 opacity-80">
                   {t('owner')}
                 </p>
               </div>
-              <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white text-[9px] font-black shadow-sm">
+              <div className="w-6.5 h-6.5 rounded-lg bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center text-white text-[9px] font-black shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform">
                 {authUser.firstName?.[0]}
               </div>
             </button>
