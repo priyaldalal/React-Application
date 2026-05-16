@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 79 70 229;
+    --primary-foreground: 255 255 255;
+    
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+    
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+    
+    --border: 226 232 240;
+    --radius: 1rem;
+    color-scheme: light;
+  }
+
+  .dark {
+    --primary: 99 102 241;
+    --primary-foreground: 255 255 255;
+    
+    --background: 15 23 42; /* #0F172A */
+    --foreground: 248 250 252; /* #F8FAFC */
+    
+    --card: 30 41 59; /* #1E293B */
+    --card-foreground: 248 250 252;
+    
+    --border: 51 65 85; /* #334155 */
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    @apply transition-colors duration-500 font-sans antialiased selection:bg-indigo-500/30;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .glass {
+    background-color: rgba(var(--card), 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--border), 0.2);
+    @apply shadow-xl;
+  }
+  
+  .premium-card {
+    background-color: rgb(var(--card));
+    border: 1px solid rgb(var(--border));
+    @apply rounded-[2rem] shadow-xl shadow-slate-200/50 dark:shadow-none transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full rounded-[var(--radius)] px-4 py-2.5 text-sm transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none;
+    background-color: rgb(var(--card));
+    border: 1px solid rgb(var(--border));
+    color: rgb(var(--foreground));
+  }
+
+  .btn-premium {
+    @apply inline-flex items-center justify-center rounded-[var(--radius)] px-4 py-2 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-95 disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:opacity-90 shadow-lg shadow-primary/20 dark:shadow-none hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700 border border-border;
+  }
+
+  .input-premium {
+    @apply w-full rounded-[var(--radius)] border border-border bg-card px-4 py-2.5 text-sm transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none;
+  }
+
+  .premium-card {
+    @apply bg-card border border-border rounded-[2rem] shadow-xl shadow-slate-200/50 dark:shadow-none transition-all duration-300;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Custom Scrollbar - High Contrast with Arrows */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgb(var(--background));
+  border-left: 1px solid rgb(var(--border));
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-sm hover:bg-primary transition-colors;
+  border: 2px solid rgb(var(--background));
+}
+::-webkit-scrollbar-button:single-button {
+  background-color: rgb(var(--background));
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 13px;
+}
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 5px 8px 5px;
+  border-color: transparent transparent #64748b transparent;
+}
+/* Down */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 5px 0 5px;
+  border-color: #64748b transparent transparent transparent;
+}
+/* Left */
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  border-width: 5px 8px 5px 0;
+  border-color: transparent #64748b transparent transparent;
+}
+/* Right */
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent #64748b;
+}
+::-webkit-scrollbar-button:single-button:hover {
+  background-color: #e2e8f0;
+}
+.dark ::-webkit-scrollbar-button:single-button:hover {
+  background-color: #334155;
+}
+
+.recharts-responsive-container {
+  @apply transition-all duration-500;
+}
+
+/* Date Picker Custom Styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  @apply opacity-50 hover:opacity-100 cursor-pointer transition-opacity;
+  filter: invert(0.5);
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
