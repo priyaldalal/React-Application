@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SwitchToggle = ({ label, checked, onChange, disabled }) => {
+const SwitchToggle = ({ label, helperText, checked, onChange, disabled }) => {
   return (
-    <label className="flex items-center gap-3 cursor-pointer select-none">
-      <div className="relative">
+    <label className="flex items-center gap-2.5 cursor-pointer select-none group">
+      <div className="relative flex-shrink-0">
         <input
           type="checkbox"
           className="sr-only"
@@ -11,10 +11,19 @@ const SwitchToggle = ({ label, checked, onChange, disabled }) => {
           onChange={onChange}
           disabled={disabled}
         />
-        <div className={`block w-12 h-6 rounded-full transition-colors ${checked ? 'bg-indigo-600' : 'bg-gray-300 dark:bg-slate-700'}`}></div>
-        <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 transform ${checked ? 'translate-x-6' : 'translate-x-0'}`}></div>
+        <div className={`w-8 h-[18px] rounded-full transition-colors duration-200 ${
+          checked ? 'bg-indigo-600' : 'bg-slate-200 dark:bg-slate-700'
+        } ${disabled ? 'opacity-40' : ''}`} />
+        <div className={`absolute left-0.5 top-0.5 bg-white w-[14px] h-[14px] rounded-full shadow-sm transition-transform duration-200 ${
+          checked ? 'translate-x-[14px]' : 'translate-x-0'
+        }`} />
       </div>
-      {label && <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>}
+      {(label || helperText) && (
+        <div className="min-w-0">
+          {label && <span className="text-[10px] font-bold text-slate-700 dark:text-slate-300 leading-none">{label}</span>}
+          {helperText && <p className="text-[8px] text-slate-400 mt-0.5 leading-tight">{helperText}</p>}
+        </div>
+      )}
     </label>
   );
 };

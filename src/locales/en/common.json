@@ -18,6 +18,7 @@
   "success": "Success",
   "error": "Error",
   "performance_overview": "Performance Overview",
+  "intelligence_engine": "Real-time intelligence engine",
   "inventory_catalog": "Inventory Catalog",
   "global_supply_chain": "Global supply chain management system",
   "showing": "Showing",
@@ -60,7 +61,6 @@
   "reviews": "Reviews",
   "description": "Description",
   "search_products": "Search by name, SKU, or category...",
-  "add_product": "Add Product",
   "active_accounts": "Active Accounts",
   "enterprise_directory": "Enterprise Directory System",
   "user_details": "User Details",
@@ -139,5 +139,15 @@
   "street_address": "Street Address",
   "city": "City",
   "state": "State",
-  "zip_code": "Zip Code"
+  "zip_code": "Zip Code",
+  "pin_left": "Pin Left",
+  "pin_right": "Pin Right",
+  "unpin": "Unpin",
+  "columns": "Columns",
+  "select_all": "Select All",
+  "selected": "selected",
+  "clear_selection": "Clear Selection",
+  "no_results": "No results found",
+  "reset_filters": "Reset Filters",
+  "rows_selected": "{{count}} row(s) selected"
 }

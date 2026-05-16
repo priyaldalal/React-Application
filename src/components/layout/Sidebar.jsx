@@ -3,19 +3,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { 
-  LayoutDashboard, 
-  Users, 
-  FileText, 
-  BarChart3, 
-  Settings, 
-  LogOut, 
-  ChevronLeft, 
-  Zap,
-  LayoutGrid,
-  Package
+  LayoutDashboard, Users, FileText, BarChart3, Settings, 
+  LogOut, ChevronLeft, Zap, LayoutGrid, Package
 } from 'lucide-react';
 import { clsx } from 'clsx';
-import ThemeToggle from '../ui/ThemeToggle';
 import Tooltip from '../ui/Tooltip';
 import { UI_CONFIG } from '../../config/uiConfig';
 
@@ -24,13 +15,13 @@ const Sidebar = ({ isCollapsed, toggleCollapse }) => {
   const navigate = useNavigate();
 
   const menuItems = [
-    { name: t('dashboard'), path: '/dashboard', icon: LayoutDashboard },
-    { name: t('users'), path: '/users', icon: Users },
-    { name: t('products'), path: '/products', icon: Package },
-    { name: t('card_view'), path: '/cards', icon: LayoutGrid },
-    { name: t('registration'), path: '/registration', icon: FileText },
-    { name: t('analytics'), path: '/analytics', icon: BarChart3 },
-    { name: t('settings'), path: '/settings', icon: Settings },
+    { name: t('dashboard'),     path: '/dashboard',     icon: LayoutDashboard },
+    { name: t('users'),         path: '/users',         icon: Users },
+    { name: t('products'),      path: '/products',      icon: Package },
+    { name: t('card_view'),     path: '/cards',         icon: LayoutGrid },
+    { name: t('registration'),  path: '/registration',  icon: FileText },
+    { name: t('analytics'),     path: '/analytics',     icon: BarChart3 },
+    { name: t('settings'),      path: '/settings',      icon: Settings },
   ];
 
   const handleLogout = () => {
@@ -42,21 +33,22 @@ const Sidebar = ({ isCollapsed, toggleCollapse }) => {
     <motion.aside
       initial={false}
       animate={{ width: isCollapsed ? UI_CONFIG.sidebar.collapsedWidth : UI_CONFIG.sidebar.width }}
-      className="fixed top-0 left-0 h-screen bg-card border-r border-border z-50 flex flex-col transition-all duration-300 shadow-xl dark:shadow-none"
+      transition={{ duration: 0.2, ease: 'easeInOut' }}
+      className="fixed top-0 left-0 h-screen bg-white dark:bg-slate-950 border-r border-slate-100 dark:border-slate-800 z-50 flex flex-col"
     >
-      {/* Sidebar Header */}
-      <div className="h-10 flex items-center px-3 relative border-b border-border/50">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white flex-shrink-0 shadow-lg shadow-indigo-500/30">
-            <Zap size={14} fill="currentColor" />
+      {/* ── Header ── */}
+      <div className="h-10 flex items-center px-3 border-b border-slate-100 dark:border-slate-800 relative flex-shrink-0">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white flex-shrink-0 shadow-md shadow-indigo-600/20">
+            <Zap size={13} fill="currentColor" />
           </div>
           <AnimatePresence>
             {!isCollapsed && (
               <motion.span
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                className="text-md font-black tracking-tighter text-foreground whitespace-nowrap"
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 'auto' }}
+                exit={{ opacity: 0, width: 0 }}
+                className="text-[13px] font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap overflow-hidden"
               >
                 RECT.IO
               </motion.span>
@@ -66,91 +58,82 @@ const Sidebar = ({ isCollapsed, toggleCollapse }) => {
 
         <button
           onClick={toggleCollapse}
-          className="absolute -right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 bg-indigo-600 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform hidden md:flex z-50"
+          className="absolute -right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 bg-indigo-600 text-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform hidden md:flex z-50"
         >
-          <motion.div animate={{ rotate: isCollapsed ? 180 : 0 }}>
-            <ChevronLeft size={12} />
+          <motion.div animate={{ rotate: isCollapsed ? 180 : 0 }} transition={{ duration: 0.2 }}>
+            <ChevronLeft size={11} />
           </motion.div>
         </button>
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
+      {/* ── Navigation ── */}
+      <nav className="flex-1 px-1.5 py-2 space-y-0.5 overflow-y-auto overflow-x-hidden">
         {menuItems.map((item) => (
           <Tooltip key={item.path} content={item.name} position="right" disabled={!isCollapsed}>
             <NavLink
               to={item.path}
               className={({ isActive }) => clsx(
-                "flex items-center gap-2 px-2.5 py-1.5 rounded-md transition-all duration-200 relative group overflow-hidden",
-                isActive 
-                  ? "text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-500/10" 
-                  : "text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+                "w-full flex items-center gap-2.5 px-2.5 rounded-md transition-all duration-150 relative group",
+                isCollapsed ? "justify-center px-0" : "",
+                isActive
+                  ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400"
+                  : "text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-700 dark:hover:text-slate-200"
               )}
+              style={{ height: UI_CONFIG.sidebar.itemHeight }}
             >
-              {/* Active Indicator Bar */}
-              <NavLink 
-                to={item.path} 
-                className={({ isActive }) => clsx(
-                  "absolute left-0 top-1.5 bottom-1.5 w-1 bg-indigo-600 rounded-r-full transition-transform duration-300",
-                  isActive ? "translate-x-0" : "-translate-x-full"
-                )}
-              />
+              {({ isActive }) => (
+                <>
+                  {/* Left active indicator */}
+                  <div className={clsx(
+                    "absolute left-0 top-1 bottom-1 w-[3px] rounded-r-full transition-all duration-200",
+                    isActive ? "bg-indigo-600 dark:bg-indigo-400" : "bg-transparent"
+                  )} />
 
-              <item.icon size={14} className={clsx(
-                "flex-shrink-0 transition-colors duration-200",
-                "group-hover:text-indigo-600 dark:group-hover:text-indigo-400"
-              )} />
-              
-              <AnimatePresence>
-                {!isCollapsed && (
-                  <motion.span
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    className="font-black text-[9px] uppercase tracking-widest whitespace-nowrap"
-                  >
-                    {item.name}
-                  </motion.span>
-                )}
-              </AnimatePresence>
+                  <item.icon size={15} className={clsx(
+                    "flex-shrink-0 transition-colors duration-150",
+                    isActive ? "text-indigo-600 dark:text-indigo-400" : ""
+                  )} />
 
-              {/* Hover Highlight */}
-              <div className="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/5 dark:group-hover:bg-indigo-400/5 transition-colors pointer-events-none" />
+                  <AnimatePresence>
+                    {!isCollapsed && (
+                      <motion.span
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: 'auto' }}
+                        exit={{ opacity: 0, width: 0 }}
+                        className={clsx(
+                          "text-[10px] uppercase tracking-wider whitespace-nowrap overflow-hidden",
+                          isActive ? "font-black" : "font-bold"
+                        )}
+                      >
+                        {item.name}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </>
+              )}
             </NavLink>
           </Tooltip>
         ))}
       </nav>
 
-      {/* Footer / Logout */}
-      <div className="p-2 border-t border-border space-y-2">
-        <div className="px-2 py-1.5 flex items-center justify-between bg-slate-100/50 dark:bg-slate-800/50 rounded-md">
-          <AnimatePresence>
-            {!isCollapsed && (
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="text-[8px] font-black text-slate-400 uppercase tracking-widest"
-              >
-                {t('theme_mode')}
-              </motion.span>
-            )}
-          </AnimatePresence>
-          <ThemeToggle className={isCollapsed ? "scale-75 -ml-1" : ""} />
-        </div>
-        
+      {/* ── Footer ── */}
+      <div className="p-1.5 border-t border-slate-100 dark:border-slate-800 flex-shrink-0">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 w-full px-2.5 py-1.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-md transition-all group relative overflow-hidden"
+          className={clsx(
+            "flex items-center gap-2.5 w-full px-2.5 text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-md transition-all group",
+            isCollapsed ? "justify-center px-0" : ""
+          )}
+          style={{ height: UI_CONFIG.sidebar.itemHeight }}
         >
-          <LogOut size={12} className="flex-shrink-0 transition-transform group-hover:scale-110" />
+          <LogOut size={14} className="flex-shrink-0 group-hover:scale-105 transition-transform" />
           <AnimatePresence>
             {!isCollapsed && (
               <motion.span
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -10 }}
-                className="font-black text-[9px] uppercase tracking-widest whitespace-nowrap"
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 'auto' }}
+                exit={{ opacity: 0, width: 0 }}
+                className="text-[10px] font-black uppercase tracking-wider whitespace-nowrap overflow-hidden"
               >
                 {t('sign_out')}
               </motion.span>

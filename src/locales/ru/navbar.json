@@ -1,0 +1,16 @@
+{
+  "dashboard": "Панель",
+  "users": "Пользователи",
+  "products": "Продукты",
+  "card_view": "Карточки",
+  "registration": "Регистрация",
+  "analytics": "Аналитика",
+  "settings": "Настройки",
+  "theme_mode": "Тема",
+  "sign_out": "Выход",
+  "search_placeholder": "Поиск...",
+  "notifications": "Уведомления",
+  "language": "Язык",
+  "profile_menu": "Меню профиля",
+  "owner": "Владелец"
+}

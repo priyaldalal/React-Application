@@ -1,0 +1,16 @@
+{
+  "dashboard": "Tableau de bord",
+  "users": "Utilisateurs",
+  "products": "Produits",
+  "card_view": "Vue en carte",
+  "registration": "Inscription",
+  "analytics": "Analytique",
+  "settings": "Paramètres",
+  "theme_mode": "Mode thème",
+  "sign_out": "Déconnexion",
+  "search_placeholder": "Rechercher...",
+  "notifications": "Notifications",
+  "language": "Langue",
+  "profile_menu": "Menu profil",
+  "owner": "Propriétaire"
+}

@@ -1,0 +1,16 @@
+{
+  "dashboard": "Panel",
+  "users": "Usuarios",
+  "products": "Productos",
+  "card_view": "Vista de tarjetas",
+  "registration": "Registro",
+  "analytics": "Analítica",
+  "settings": "Configuración",
+  "theme_mode": "Modo de tema",
+  "sign_out": "Cerrar sesión",
+  "search_placeholder": "Buscar...",
+  "notifications": "Notificaciones",
+  "language": "Idioma",
+  "profile_menu": "Menú de perfil",
+  "owner": "Propietario"
+}
