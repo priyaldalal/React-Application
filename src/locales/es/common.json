@@ -1,0 +1,10 @@
+{
+  "welcome": "Bienvenido",
+  "export": "Exportar",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "loading": "Cargando...",
+  "status": "Estado",
+  "active": "Activo",
+  "inactive": "Inactivo"
+}

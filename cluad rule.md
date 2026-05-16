@@ -37,5 +37,18 @@
 - **Error Handling**: Use `try-catch` blocks and provide user-friendly error messages via Toasts.
 - **Loading Indicators**: Manage loading states globally or per-component to prevent UI flickering.
 
+## 7. Typography & Density (Updated)
+- **Base Font Size**: Use `text-xs` (12px) or `text-[11px]` for primary content.
+- **Micro-copy**: Use `text-[9px]` or `text-[8px]` for status badges, IDs, and secondary metadata.
+- **Headers**: Page headers should not exceed `text-xl`. Section titles should be `text-sm` or `text-xs`.
+- **Data Density**: Maximize vertical space. Table rows should have minimal padding (`py-2` or `py-1.5`).
+
+## 8. Dashboard Layout Standards
+- **Outer Padding**: Maintain a consistent `p-4 md:p-6` for main content areas.
+- **Component Spacing**: Use `gap-4` or `gap-2` for component relationships.
+- **Navigation Components**: 
+  - **Navbar**: Height is fixed at `h-14`. Use floating layouts (`w-[calc(100%-2rem)]`) where appropriate.
+  - **Sidebar**: Width is `w-64` (expanded) and `w-20` (collapsed). Header height must match Navbar (`h-14`).
+
 ---
-*Created by Antigravity AI*
+*Updated by Antigravity AI - Professional Edition*

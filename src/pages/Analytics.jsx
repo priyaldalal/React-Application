@@ -54,23 +54,23 @@ const StatCard = ({ title, value, trend, trendType, icon: Icon, delay }) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay }}
-    className="premium-card p-5 flex flex-col gap-3"
+    className="premium-card p-3.5 flex flex-col gap-2"
   >
     <div className="flex justify-between items-start">
-      <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-        <Icon size={20} />
+      <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+        <Icon size={16} />
       </div>
       <div className={clsx(
-        "flex items-center gap-1 px-1.5 py-0.5 rounded-lg text-[10px] font-bold",
+        "flex items-center gap-1 px-1.5 py-0.5 rounded-lg text-[9px] font-black",
         trendType === 'up' ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400" : "bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400"
       )}>
-        {trendType === 'up' ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
+        {trendType === 'up' ? <ArrowUpRight size={10} /> : <ArrowDownRight size={10} />}
         {trend}
       </div>
     </div>
     <div>
-      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{title}</p>
-      <h3 className="text-xl font-black text-slate-900 dark:text-white mt-0.5">{value}</h3>
+      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{title}</p>
+      <h3 className="text-lg font-black text-slate-900 dark:text-white mt-0.5">{value}</h3>
     </div>
   </motion.div>
 );
@@ -84,15 +84,15 @@ const Analytics = () => {
       {/* Header Area */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 flex-shrink-0">
         <div>
-          <h1 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
+          <h1 className="text-lg md:text-xl font-black text-slate-900 dark:text-white tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
             Intelligence Engine
           </h1>
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">Real-time Data Processing & Analytics</p>
+          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-0.5">Real-time Data Processing & Analytics</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="secondary" size="md"><Calendar size={14} className="mr-2" /> Range</Button>
-          <Button variant="secondary" size="md"><Filter size={14} className="mr-2" /> Filter</Button>
-          <Button size="md"><Download size={14} className="mr-2" /> Export Insights</Button>
+          <Button variant="secondary" size="sm"><Calendar size={12} className="mr-2" /> Range</Button>
+          <Button variant="secondary" size="sm"><Filter size={12} className="mr-2" /> Filter</Button>
+          <Button size="sm"><Download size={12} className="mr-2" /> Export Insights</Button>
         </div>
       </div>
 
@@ -113,12 +113,12 @@ const Analytics = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 }}
-            className="lg:col-span-2 premium-card p-8 flex flex-col gap-6"
+            className="lg:col-span-2 premium-card p-4 flex flex-col gap-4"
           >
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-lg font-black text-slate-900 dark:text-white">Revenue Velocity</h3>
-                <p className="text-xs text-slate-500 font-medium">Monthly revenue stream vs projected growth.</p>
+                <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Revenue Velocity</h3>
+                <p className="text-[9px] text-slate-400 font-bold uppercase">Monthly revenue stream vs projected growth.</p>
               </div>
             </div>
             <div className="h-[400px] w-full">
@@ -171,9 +171,9 @@ const Analytics = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
-            className="premium-card p-8 flex flex-col gap-6"
+            className="premium-card p-4 flex flex-col gap-4"
           >
-            <h3 className="text-lg font-black text-slate-900 dark:text-white">Traffic Origins</h3>
+            <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Traffic Origins</h3>
             <div className="h-[300px] w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -214,12 +214,12 @@ const Analytics = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
-          className="premium-card p-8 flex flex-col gap-6"
+          className="premium-card p-4 flex flex-col gap-4"
         >
           <div className="flex justify-between items-center">
             <div>
-              <h3 className="text-lg font-black text-slate-900 dark:text-white">Customer Engagement</h3>
-              <p className="text-xs text-slate-500 font-medium">Daily active users vs session duration.</p>
+              <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Customer Engagement</h3>
+              <p className="text-[9px] text-slate-400 font-bold uppercase">Daily active users vs session duration.</p>
             </div>
           </div>
           <div className="h-[300px] w-full">

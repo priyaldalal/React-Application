@@ -2,15 +2,15 @@ import React from 'react';
 
 const RadioGroup = ({ label, name, options = [], value, onChange, error, required }) => {
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex flex-col gap-1 w-full">
       {label && (
-        <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
-          {label} {required && <span className="text-red-500">*</span>}
+        <label className="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+          {label} {required && <span className="text-rose-500">*</span>}
         </label>
       )}
-      <div className="flex flex-wrap gap-6">
+      <div className="flex flex-wrap gap-4 py-1">
         {options.map(opt => (
-          <label key={opt.value} className="flex items-center gap-2 cursor-pointer group">
+          <label key={opt.value} className="flex items-center gap-1.5 cursor-pointer group">
             <div className="relative flex items-center justify-center">
               <input
                 type="radio"
@@ -18,15 +18,15 @@ const RadioGroup = ({ label, name, options = [], value, onChange, error, require
                 value={opt.value}
                 checked={value === opt.value}
                 onChange={() => onChange(opt.value)}
-                className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-gray-300 dark:border-slate-600 transition-all checked:border-indigo-600"
+                className="peer h-3.5 w-3.5 cursor-pointer appearance-none rounded-full border-2 border-slate-300 dark:border-slate-600 transition-all checked:border-indigo-600"
               />
-              <div className="absolute h-2.5 w-2.5 rounded-full bg-indigo-600 opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+              <div className="absolute h-1.5 w-1.5 rounded-full bg-indigo-600 opacity-0 peer-checked:opacity-100 transition-opacity"></div>
             </div>
-            <span className="text-sm text-gray-600 dark:text-gray-400 group-hover:text-indigo-600 transition-colors">{opt.label}</span>
+            <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 group-hover:text-indigo-600 transition-colors uppercase tracking-tight">{opt.label}</span>
           </label>
         ))}
       </div>
-      {error && <p className="text-xs text-red-500 font-medium">{error}</p>}
+      {error && <p className="text-[10px] text-rose-500 font-medium">{error}</p>}
     </div>
   );
 };

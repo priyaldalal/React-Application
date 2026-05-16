@@ -14,7 +14,7 @@
     --card-foreground: 15 23 42;
     
     --border: 226 232 240;
-    --radius: 1rem;
+    --radius: 0.75rem;
     color-scheme: light;
   }
 
@@ -51,11 +51,11 @@
   .premium-card {
     background-color: rgb(var(--card));
     border: 1px solid rgb(var(--border));
-    @apply rounded-[2rem] shadow-xl shadow-slate-200/50 dark:shadow-none transition-all duration-300;
+    @apply rounded-[1rem] shadow-lg shadow-slate-200/50 dark:shadow-none transition-all duration-300;
   }
 
   .input-field {
-    @apply w-full rounded-[var(--radius)] px-4 py-2.5 text-sm transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none;
+    @apply w-full rounded-[var(--radius)] px-3 py-1.5 text-[11px] transition-all focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none;
     background-color: rgb(var(--card));
     border: 1px solid rgb(var(--border));
     color: rgb(var(--foreground));
@@ -66,7 +66,7 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:opacity-90 shadow-lg shadow-primary/20 dark:shadow-none hover:shadow-xl;
+    @apply bg-primary text-primary-foreground hover:opacity-90 shadow-md shadow-primary/20 dark:shadow-none hover:shadow-lg;
   }
 
   .btn-secondary {
@@ -78,7 +78,7 @@
   }
 
   .premium-card {
-    @apply bg-card border border-border rounded-[2rem] shadow-xl shadow-slate-200/50 dark:shadow-none transition-all duration-300;
+    @apply bg-card border border-border rounded-[1rem] shadow-lg shadow-slate-200/50 dark:shadow-none transition-all duration-300;
   }
 
   .animate-float {
@@ -94,8 +94,8 @@
 
 /* Custom Scrollbar - High Contrast with Arrows */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background-color: rgb(var(--background));
@@ -145,12 +145,16 @@
 
 /* Date Picker Custom Styling */
 input[type="date"]::-webkit-calendar-picker-indicator {
-  @apply opacity-50 hover:opacity-100 cursor-pointer transition-opacity;
-  filter: invert(0.5);
+  @apply opacity-0 absolute inset-0 w-full h-full cursor-pointer;
 }
 
-.dark input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);
+input[type="date"] {
+  position: relative;
+}
+
+/* Forcing color-scheme to match theme for popups */
+.dark input[type="date"] {
+  color-scheme: dark;
 }
 
 input[type="date"]::-webkit-inner-spin-button,

@@ -52,15 +52,15 @@ const MainLayout = () => {
         )}
       </AnimatePresence>
 
-      <div className={`flex-1 flex flex-col h-screen overflow-hidden transition-all duration-300 ${isCollapsed ? 'md:ml-20' : 'md:ml-[280px]'}`}>
+      <div className={`flex-1 flex flex-col h-screen overflow-hidden transition-all duration-300 ${isCollapsed ? 'md:ml-[60px]' : 'md:ml-[200px]'}`}>
         <Navbar onMenuClick={() => setIsMobileOpen(true)} />
         
-        <main className="flex-1 p-6 md:p-8 flex flex-col overflow-hidden relative">
+        <main className="flex-1 p-2 md:p-3 flex flex-col overflow-hidden relative">
           {/* Breadcrumbs Placeholder */}
-          <div className="flex items-center gap-2 mb-6 text-xs font-bold uppercase tracking-widest text-slate-400 flex-shrink-0">
-            <span className="hover:text-indigo-600 cursor-pointer">Console</span>
-            <span>/</span>
-            <span className="text-foreground">
+          <div className="flex items-center gap-2 mb-2 text-[9px] font-black uppercase tracking-[0.2em] text-slate-400/70 flex-shrink-0">
+            <span className="hover:text-indigo-600 cursor-pointer transition-colors">Console</span>
+            <span className="opacity-30">/</span>
+            <span className="text-slate-600 dark:text-slate-300">
               {location.pathname.substring(1) || 'Dashboard'}
             </span>
           </div>

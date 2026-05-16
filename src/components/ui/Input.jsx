@@ -8,14 +8,23 @@ const Input = ({ label, icon: Icon, error, type = 'text', value: propValue, defa
   const value = propValue !== undefined ? propValue : (defaultValue !== undefined ? defaultValue : '');
 
   return (
-    <div className="flex flex-col gap-1.5 w-full relative">
+    <div className="flex flex-col gap-1 w-full group">
+      {label && (
+        <label className={clsx(
+          "text-[8px] font-black uppercase tracking-widest ml-1 transition-colors",
+          isFocused ? "text-indigo-600" : "text-slate-400 group-hover:text-slate-500"
+        )}>
+          {label}
+        </label>
+      )}
+      
       <div className="relative">
         {Icon && (
           <div className={clsx(
-            "absolute left-4 top-1/2 -translate-y-1/2 transition-colors duration-300 z-10",
+            "absolute left-2.5 top-1/2 -translate-y-1/2 transition-colors duration-200 z-10 pointer-events-none",
             isFocused ? "text-indigo-600" : "text-slate-400"
           )}>
-            <Icon size={18} />
+            <Icon size={12} />
           </div>
         )}
         
@@ -26,30 +35,21 @@ const Input = ({ label, icon: Icon, error, type = 'text', value: propValue, defa
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           className={twMerge(
-            "input-premium peer placeholder-transparent pt-7 pb-3 min-h-[60px]",
-            Icon && "pl-11",
-            error && "border-red-500 focus:ring-red-500/20",
+            "w-full bg-slate-50/50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-md px-3 py-1.5 text-[10px] font-bold text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500/10 focus:border-indigo-500/30 transition-all placeholder:text-slate-300 dark:placeholder:text-slate-700",
+            Icon && "pl-8",
+            error && "border-rose-500 focus:ring-rose-500/10 focus:border-rose-500/30",
             props.className
           )}
-          placeholder={label}
         />
-
-        <label className={clsx(
-          "absolute left-4 transition-all duration-300 pointer-events-none text-[10px] font-black uppercase tracking-widest",
-          Icon && "left-11",
-          isFocused || value ? "top-2.5 text-indigo-600 opacity-100" : "top-1/2 -translate-y-1/2 text-slate-400 opacity-60 text-sm font-medium normal-case tracking-normal"
-        )}>
-          {label}
-        </label>
       </div>
 
       <AnimatePresence>
         {error && (
           <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="text-[10px] font-bold text-red-500 uppercase tracking-tight ml-1"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="text-[7px] font-black text-rose-500 uppercase tracking-tight ml-1 mt-0.5"
           >
             {error}
           </motion.p>

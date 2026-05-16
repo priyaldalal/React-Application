@@ -10,13 +10,13 @@ const CheckboxGroup = ({ label, options = [], value = [], onChange, error, requi
   };
 
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex flex-col gap-1 w-full">
       {label && (
-        <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-          {label} {required && <span className="text-red-500">*</span>}
+        <label className="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+          {label} {required && <span className="text-rose-500">*</span>}
         </label>
       )}
-      <div className="grid grid-cols-2 gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl bg-gray-50/50 dark:bg-slate-900/50">
+      <div className="grid grid-cols-2 gap-2 p-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50/50 dark:bg-slate-900/50">
         {options.map(opt => (
           <Checkbox 
             key={opt.value}
@@ -26,7 +26,7 @@ const CheckboxGroup = ({ label, options = [], value = [], onChange, error, requi
           />
         ))}
       </div>
-      {error && <p className="text-xs text-red-500 font-medium">{error}</p>}
+      {error && <p className="text-[10px] text-rose-500 font-medium">{error}</p>}
     </div>
   );
 };

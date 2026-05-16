@@ -43,15 +43,15 @@ const UserCardView = () => {
     <div className="h-full flex flex-col overflow-hidden gap-10">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 flex-shrink-0">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Organization Map</h1>
-          <p className="text-slate-500 dark:text-slate-400 font-medium">Visual representation of your global workforce.</p>
+          <h1 className="text-lg md:text-xl font-black text-slate-900 dark:text-white tracking-tight">Organization Map</h1>
+          <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest mt-0.5">Visual representation of your global workforce.</p>
         </div>
-        <div className="relative w-full md:w-96 group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" size={18} />
+        <div className="relative w-full md:w-80 group">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" size={14} />
           <input 
             type="text" 
             placeholder="Find team members..." 
-            className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl pl-11 pr-4 py-3 text-sm focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all font-medium shadow-sm"
+            className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg pl-9 pr-4 py-1.5 text-xs focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all font-bold shadow-sm"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -59,7 +59,7 @@ const UserCardView = () => {
       </div>
 
       <div className="flex-1 overflow-auto custom-scrollbar pr-2">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 pb-10">
         <AnimatePresence>
           {loading ? (
             Array.from({ length: 8 }).map((_, i) => (
@@ -101,53 +101,53 @@ const UserCardView = () => {
                 {/* Decorative Background */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
                 
-                <div className="p-8 flex-1 flex flex-col">
-                  <div className="flex justify-between items-start mb-6">
+                <div className="p-4 flex-1 flex flex-col">
+                  <div className="flex justify-between items-start mb-4">
                     <div className="relative">
-                      <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-3xl font-black shadow-2xl shadow-indigo-500/30">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-black shadow-lg shadow-indigo-500/20">
                         {user.firstName[0]}{user.lastName[0]}
                       </div>
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white dark:bg-slate-800 rounded-xl shadow-lg flex items-center justify-center text-indigo-600 border border-slate-100 dark:border-slate-700">
-                        <ShieldCheck size={16} fill="currentColor" fillOpacity={0.2} />
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white dark:bg-slate-800 rounded-lg shadow-md flex items-center justify-center text-indigo-600 border border-slate-100 dark:border-slate-700">
+                        <ShieldCheck size={10} fill="currentColor" fillOpacity={0.2} />
                       </div>
                     </div>
-                    <button className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                      <MoreHorizontal size={20} />
+                    <button className="p-1 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                      <MoreHorizontal size={16} />
                     </button>
                   </div>
 
-                  <div className="mb-6">
-                    <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">{user.firstName} {user.lastName}</h3>
-                    <p className="text-xs font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-[0.2em] mt-1">{user.designation}</p>
+                  <div className="mb-4">
+                    <h3 className="text-sm font-black text-slate-900 dark:text-white tracking-tight">{user.firstName} {user.lastName}</h3>
+                    <p className="text-[9px] font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mt-0.5">{user.designation}</p>
                   </div>
 
-                  <div className="space-y-4 mb-8">
-                    <div className="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
-                        <Briefcase size={14} className="text-indigo-500" />
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center gap-2 text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      <div className="w-6 h-6 rounded-md bg-slate-50 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+                        <Briefcase size={10} className="text-indigo-500" />
                       </div>
                       <span className="truncate">{user.department}</span>
                     </div>
-                    <div className="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
-                        <Mail size={14} className="text-purple-500" />
+                    <div className="flex items-center gap-2 text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      <div className="w-6 h-6 rounded-md bg-slate-50 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+                        <Mail size={10} className="text-purple-500" />
                       </div>
                       <span className="truncate">{user.email}</span>
                     </div>
-                    <div className="flex items-center gap-3 text-sm font-bold text-slate-600 dark:text-slate-400">
-                      <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
-                        <MapPin size={14} className="text-pink-500" />
+                    <div className="flex items-center gap-2 text-[11px] font-bold text-slate-600 dark:text-slate-400">
+                      <div className="w-6 h-6 rounded-md bg-slate-50 dark:bg-slate-800 flex items-center justify-center flex-shrink-0">
+                        <MapPin size={10} className="text-pink-500" />
                       </div>
                       <span className="truncate">{user.city}, {user.state}</span>
                     </div>
                   </div>
 
-                  <div className="mt-auto flex gap-3">
-                    <Button variant="secondary" className="flex-1 text-xs font-black py-3">
+                  <div className="mt-auto flex gap-2">
+                    <Button variant="secondary" className="flex-1 text-[9px] font-black py-2">
                       PROFILE
                     </Button>
-                    <Button className="flex-1 text-xs font-black py-3">
-                      <ExternalLink size={14} className="mr-2" /> CONNECT
+                    <Button className="flex-1 text-[9px] font-black py-2">
+                      <ExternalLink size={10} className="mr-1.5" /> CONNECT
                     </Button>
                   </div>
                 </div>

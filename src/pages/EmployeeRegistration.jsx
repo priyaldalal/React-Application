@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from '../hooks/useForm';
+import { useTranslation } from 'react-i18next';
 import { commonRules } from '../utils/validations';
 import TextBox from '../components/form/TextBox';
 import EmailBox from '../components/form/EmailBox';
@@ -13,12 +14,15 @@ import CheckboxGroup from '../components/form/CheckboxGroup';
 import DatePicker from '../components/form/DatePicker';
 import FileUpload from '../components/form/FileUpload';
 import { toast } from 'react-toastify';
-import { FiSend, FiRefreshCw, FiUserPlus, FiInfo, FiBriefcase } from 'react-icons/fi';
+import { Send, RefreshCw, UserPlus, Info, Briefcase } from 'lucide-react';
 import PageHeader from '../components/common/PageHeader';
 import Section from '../components/common/Section';
 import Button from '../components/ui/Button';
+import { UI_CONFIG } from '../config/uiConfig';
 
 const EmployeeRegistration = () => {
+  const { t } = useTranslation('common');
+  
   const initialValues = {
     fullName: '',
     email: '',
@@ -34,7 +38,7 @@ const EmployeeRegistration = () => {
   };
 
   const validationSchema = {
-    fullName: [commonRules.required('Full Name is required'), commonRules.minLength(3)],
+    fullName: [commonRules.required(t('full_name') + ' is required'), commonRules.minLength(3)],
     email: [commonRules.required(), commonRules.email()],
     mobile: [commonRules.required(), commonRules.phone()],
     department: [commonRules.required('Please select a department')],
@@ -49,7 +53,7 @@ const EmployeeRegistration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      toast.success('Employee registered successfully!');
+      toast.success(t('success'));
       const employees = JSON.parse(localStorage.getItem('app_users') || '[]');
       const newEmployee = { 
         ...values, 
@@ -62,7 +66,7 @@ const EmployeeRegistration = () => {
       localStorage.setItem('app_users', JSON.stringify([newEmployee, ...employees]));
       resetForm();
     } else {
-      toast.error('Please fix the errors in the form');
+      toast.error(t('error'));
     }
   };
 
@@ -75,28 +79,28 @@ const EmployeeRegistration = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col overflow-hidden max-w-6xl mx-auto pb-12">
+    <div className="h-full flex flex-col overflow-hidden max-w-5xl mx-auto pb-8">
       <PageHeader 
-        title="Employee Onboarding" 
-        subtitle="Configure new team member profiles with enterprise-grade validation."
+        title={t('employee_onboarding')} 
+        subtitle={t('onboarding_subtitle')}
         actions={
-          <Button variant="secondary" onClick={resetForm} icon={FiRefreshCw}>
-            Reset All
+          <Button variant="secondary" onClick={resetForm} size="sm">
+            <RefreshCw size={10} className="mr-2" /> {t('reset_all')}
           </Button>
         }
       />
 
-      <div className="flex-1 overflow-auto custom-scrollbar pr-2 space-y-8">
-        <form onSubmit={handleSubmit} className="space-y-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="flex-1 overflow-auto custom-scrollbar pr-2 space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Personal Information */}
             <Section 
-              title="Personal Details" 
-              description="Basic identity information for the employee record."
-              icon={FiUserPlus}
+              title={t('personal_details')} 
+              description={t('personal_details_desc')}
+              icon={UserPlus}
             >
               <TextBox 
-                label="Full Name" 
+                label={t('full_name')} 
                 placeholder="John Doe" 
                 value={values.fullName}
                 onChange={(e) => handleChange('fullName', e.target.value)}
@@ -105,9 +109,9 @@ const EmployeeRegistration = () => {
                 required
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <EmailBox 
-                  label="Email Address" 
+                  label={t('email_address')} 
                   placeholder="john@example.com" 
                   value={values.email}
                   onChange={(e) => handleChange('email', e.target.value)}
@@ -117,7 +121,7 @@ const EmployeeRegistration = () => {
                 />
 
                 <MobileNumberBox 
-                  label="Mobile Number" 
+                  label={t('mobile_number')} 
                   placeholder="1234567890" 
                   value={values.mobile}
                   onChange={(e) => handleChange('mobile', e.target.value)}
@@ -128,7 +132,7 @@ const EmployeeRegistration = () => {
               </div>
 
               <RadioGroup 
-                label="Gender" 
+                label={t('gender')} 
                 name="gender"
                 options={[
                   { label: 'Male', value: 'Male' },
@@ -141,7 +145,7 @@ const EmployeeRegistration = () => {
               />
 
               <DatePicker 
-                label="Date of Birth" 
+                label={t('date_of_birth')} 
                 value={values.dob}
                 onChange={(e) => handleChange('dob', e.target.value)}
                 onBlur={() => handleBlur('dob')}
@@ -151,14 +155,14 @@ const EmployeeRegistration = () => {
             </Section>
 
             {/* Professional Information */}
-            <div className="space-y-8">
+            <div className="space-y-3">
               <Section 
-                title="Work Information" 
-                description="Department and technical skill assignments."
-                icon={FiBriefcase}
+                title={t('work_information')} 
+                description={t('work_information_desc')}
+                icon={Briefcase}
               >
                 <SelectionBox 
-                  label="Department" 
+                  label={t('department')} 
                   placeholder="Select Department"
                   options={[
                     { label: 'Engineering', value: 'Engineering' },
@@ -175,7 +179,7 @@ const EmployeeRegistration = () => {
                 />
 
                 <CheckboxGroup 
-                  label="Technical Skills" 
+                  label={t('technical_skills')} 
                   options={skillOptions}
                   value={values.skills}
                   onChange={(val) => handleChange('skills', val)}
@@ -185,18 +189,18 @@ const EmployeeRegistration = () => {
               </Section>
 
               <Section 
-                title="Additional Info" 
-                description="Profile assets and location data."
-                icon={FiInfo}
+                title={t('additional_info')} 
+                description={t('additional_info_desc')}
+                icon={Info}
               >
                 <FileUpload 
-                  label="Profile Picture" 
+                  label={t('profile_picture')} 
                   onChange={(file) => handleChange('profileImage', file)}
                   accept="image/*"
                 />
                 
                 <TextArea 
-                  label="Residential Address" 
+                  label={t('residential_address')} 
                   placeholder="Enter complete residential address" 
                   value={values.address}
                   onChange={(e) => handleChange('address', e.target.value)}
@@ -210,18 +214,18 @@ const EmployeeRegistration = () => {
           </div>
 
           {/* Compliance and Activation */}
-          <Section className="bg-indigo-50/30 dark:bg-indigo-900/10 border-indigo-200/50 dark:border-indigo-500/20">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-              <div className="space-y-4 flex-1">
+          <Section className="bg-indigo-50/20 dark:bg-indigo-900/10 border-indigo-100/50 dark:border-indigo-500/20">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="space-y-3 flex-1">
                 <SwitchToggle 
-                  label="Active Status" 
-                  helperText="Enable immediate access to company resources upon registration."
+                  label={t('active_status')} 
+                  helperText={t('active_status_helper')}
                   checked={values.isActive}
                   onChange={(e) => handleChange('isActive', e.target.checked)}
                 />
                 
                 <Checkbox 
-                  label="I verify that all information provided is accurate and I accept the company policies." 
+                  label={t('verify_accuracy')} 
                   checked={values.terms}
                   onChange={(e) => handleChange('terms', e.target.checked)}
                   error={touched.terms && errors.terms}
@@ -232,11 +236,10 @@ const EmployeeRegistration = () => {
               <div className="flex gap-4 w-full md:w-auto">
                 <Button 
                   type="submit" 
-                  size="lg" 
-                  className="flex-1 md:w-64"
-                  icon={FiSend}
+                  size="sm" 
+                  className="flex-1 md:w-48 shadow-lg shadow-indigo-600/20"
                 >
-                  Register Employee
+                  <Send size={10} className="mr-2" /> {t('register_employee')}
                 </Button>
               </div>
             </div>
@@ -245,14 +248,15 @@ const EmployeeRegistration = () => {
 
         {/* Validation Errors Summary */}
         {Object.keys(errors).length > 0 && Object.keys(touched).length > 0 && (
-          <div className="p-6 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-900/30 rounded-2xl">
-            <h4 className="text-rose-700 dark:text-rose-400 font-bold mb-2 flex items-center gap-2">
-              Registration Requirements Missing:
+          <div className="p-4 bg-rose-50/50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/20 rounded-xl">
+            <h4 className="text-rose-700 dark:text-rose-400 text-[10px] font-black mb-2 flex items-center gap-2 uppercase tracking-widest">
+              {t('requirements_missing')}
             </h4>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 list-disc list-inside text-sm text-rose-600 dark:text-rose-400">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 list-none text-[9px] text-rose-600 dark:text-rose-400 font-bold uppercase">
               {Object.entries(errors).map(([key, msg]) => msg && (
-                <li key={key} className="capitalize font-medium">
-                  {key.replace(/([A-Z])/g, ' $1')}: <span className="font-normal opacity-80">{msg}</span>
+                <li key={key} className="flex items-center gap-2">
+                  <div className="w-1 h-1 bg-rose-500 rounded-full"></div>
+                  {key.replace(/([A-Z])/g, ' $1')}: <span className="font-medium opacity-70 normal-case">{msg}</span>
                 </li>
               ))}
             </ul>
@@ -264,4 +268,3 @@ const EmployeeRegistration = () => {
 };
 
 export default EmployeeRegistration;
-

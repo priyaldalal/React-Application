@@ -1,0 +1,16 @@
+{
+  "dashboard": "Dashboard",
+  "users": "User List",
+  "products": "Product List",
+  "card_view": "Card View",
+  "registration": "Registration",
+  "analytics": "Analytics",
+  "settings": "Settings",
+  "theme_mode": "Theme Mode",
+  "sign_out": "Sign Out",
+  "search_placeholder": "Search anything...",
+  "notifications": "Notifications",
+  "language": "Language",
+  "profile_menu": "Profile Menu",
+  "owner": "Owner"
+}
